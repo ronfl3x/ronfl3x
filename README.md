@@ -1,5 +1,5 @@
 - 👋 Hey, I’m a young student at EPITA school
-- 👀 I’m interested in Computer Science (ahah no joke)
+- 👀 I’m interested in Computer Science
 - 🌱 I’m currently learning Computer Science (-_-)
 - 📫 How to reach me? very good question
 
