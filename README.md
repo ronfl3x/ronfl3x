@@ -1,4 +1,4 @@
-- 👋 Hey, I’m a young student at EPITA school
+- 👋 Hey, I’m a student at EPITA school
 <!---
 <img src="https://github-readme-stats.vercel.app/api?username=ronfl3x&show_icons=true&count_private=true&hide_border=true"></img>
 --->
