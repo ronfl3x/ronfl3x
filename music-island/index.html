@@ -315,7 +315,7 @@
       <label class="drop" id="dropzone" for="fileInput">
         <span><strong>Choisir un son</strong><small>MP3, WAV, M4A, AAC, OGG… selon ton navigateur</small></span>
       </label>
-      <input id="fileInput" type="file" accept="audio/*" />
+      <input id="fileInput" type="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg,.flac" />
 
       <div class="transport">
         <button class="play" id="playBtn" disabled aria-label="Lecture">▶</button>
@@ -417,13 +417,9 @@
       for (let i = 0; i < bars.length; i++) {
         let spectral = bandEnergy(...bandHz[i]);
 
-        // Compresse la dynamique pour rendre les détails faibles visibles.
         spectral = Math.pow(Math.min(1, spectral * 1.22), 0.62);
-
-        // Le RMS garde l'ensemble cohérent, la bande FFT donne l'indépendance.
         let target = spectral * 0.72 + Math.pow(rms, 0.7) * 0.28;
 
-        // Micro-variation esthétique, seulement tant que de l'audio joue.
         if (isPlaying) {
           const organic = (Math.sin(t * (4.4 + i * 0.31) + phases[i]) + 1) * 0.5;
           target = target * 0.93 + organic * Math.min(0.07, rms * 0.09);
@@ -431,7 +427,6 @@
           target = 0;
         }
 
-        // Attack rapide, release plus lent = mouvement musical plutôt que tremblement.
         const attack = 0.42;
         const release = 0.105;
         smooth[i] += (target - smooth[i]) * (target > smooth[i] ? attack : release);
@@ -464,7 +459,10 @@
     }
 
     async function loadFile(file) {
-      if (!file || !file.type.startsWith('audio/')) {
+      const ext = file?.name?.split('.').pop()?.toLowerCase() || '';
+      const audioExtensions = ['mp3', 'm4a', 'aac', 'wav', 'ogg', 'flac', 'webm'];
+      const looksLikeAudio = !!file && (file.type.startsWith('audio/') || audioExtensions.includes(ext));
+      if (!looksLikeAudio) {
         statusEl.textContent = 'Ce fichier ne semble pas être un audio';
         return;
       }
