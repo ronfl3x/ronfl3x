@@ -1,6 +1,6 @@
 Hey, I'm Gabriel 👋
  
-Founder of [Hikoo](https://www.tryhikoo.com), the platform built for Generative Engine Optimization.
+Founder of [Hikoo](https://www.tryhikoo.com), the agentic platform built for Generative Engine Optimization.
 
 
 📬 Get in touch
